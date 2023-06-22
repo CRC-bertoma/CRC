@@ -35,9 +35,11 @@ jobs:
     - name: Terraform Init
       run: terraform init 
     
-    - name: Terraform fetch
+    - name: Terraform Fetch
       run: |
         terraform import azurerm_resource_group.rg /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development || true
+        terraform import azurerm_storage_account.sa /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development/providers/Microsoft.Storage/storageAccounts/mbcrcstorage || true
+        terraform import azurerm_cdn_profile.cdn /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development/providers/Microsoft.Cdn/profiles/mbcrc-cdn || true
 
     - name: Terraform Validate
       run: terraform validate -no-color
