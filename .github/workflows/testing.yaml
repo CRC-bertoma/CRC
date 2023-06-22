@@ -1,0 +1,28 @@
+name: Testing
+
+on:
+  workflow_dispatch:
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    defaults:
+     run:
+       shell: bash
+    steps:
+   
+    - name: step1
+      id: s1
+      run: |
+       echo "CONNECTION_STRING=a" >> $GITHUB_OUTPUT
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: testing
+      run: |
+        echo ${{ needs.job1.outputs.CONNECTION_STRING }}
