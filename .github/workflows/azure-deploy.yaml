@@ -33,7 +33,10 @@ jobs:
         terraform_version: ${{ env.TF_VERSION }}
         
     - name: Terraform Init
-      run: terraform init
+      run: |
+        terraform init
+        terraform import azurerm_resource_group.rg /subscriptions/099ddccf-1097-4ff8-a993-eae393c7bb34/resourceGroups/CRC-Development
+
 
     - name: Terraform Validate
       run: terraform validate -no-color
@@ -48,9 +51,6 @@ jobs:
        terraform apply -auto-approve
        echo "CONNECTION_STRING=$(terraform output -raw connection_string)" >> $GITHUB_ENV
        terraform output -raw connection_string
-
-    outputs:
-      connection_string: ${{ env.CONNECTION_STRING }}
 
   build-and-deploy-frontend:
     needs: deploy-IAC
