@@ -47,6 +47,9 @@ jobs:
       run: |
         echo "CONNECTION_STRING=$(terraform apply -auto-approve -no-color -json | jq -r .outputs.connection_string.value)" >> $GITHUB_ENV
 
+    outputs:
+      connection_string: ${{ env.CONNECTION_STRING }}
+
   build-and-deploy-frontend:
     needs: deploy-IAC
     runs-on: ubuntu-latest
@@ -76,13 +79,11 @@ jobs:
       with:
         cmd: build
         dir: 'frontend'
-    - name: Check build
-      run: ls build
         
     - name: Upload to Azure Blob Storage
       uses: azure/CLI@v1.0.7
       env:
-        AZURE_STORAGE_CONNECTION_STRING: ${{ env.CONNECTION_STRING }}
+        AZURE_STORAGE_CONNECTION_STRING: ${{ needs.deploy-IAC.outputs.connection_string }}
       with:
         inlineScript: |
           echo "Connection string: $AZURE_STORAGE_CONNECTION_STRING"
