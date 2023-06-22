@@ -32,10 +32,12 @@ jobs:
       with:
         terraform_version: ${{ env.TF_VERSION }}
         
-    - name: Terraform Init and Fetch
+    - name: Terraform Init
+      run: terraform init 
+    
+    - name: Terraform fetch
       run: |
-        terraform import azurerm_resource_group.rg /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development || terraform init 
-
+        terraform import azurerm_resource_group.rg /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development || true
 
     - name: Terraform Validate
       run: terraform validate -no-color
