@@ -53,8 +53,8 @@ jobs:
       id: terraform
       run: |
        terraform apply -auto-approve
-       #echo "CONNECTION_STRING=$(echo a)" >> $GITHUB_ENV
-       echo "CONNECTION_STRING=a" >> $GITHUB_ENV
+       #echo "CONNECTION_STRING=$(echo a)" >> $GITHUB_OUTPUT
+       echo "CONNECTION_STRING=a" >> $GITHUB_OUTPUT
        terraform output -raw connection_string
 
   build-and-deploy-frontend:
@@ -74,7 +74,7 @@ jobs:
       run: |
         echo ${{ env.CONNECTION_STRING }}
         echo aaa
-        echo $CONNECTION_STRING
+        echo ${{ needs.deploy-IAC.outputs.CONNECTION_STRING }}
 
     - name: Setup Node.js for React App
       uses: actions/setup-node@v3
