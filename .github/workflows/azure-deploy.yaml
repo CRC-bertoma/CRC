@@ -56,7 +56,9 @@ jobs:
       run: |
        terraform apply -auto-approve
        output=$(terraform output -raw connection_string)
+       echo "output: $output"
        result=${output%%::*}
+       echo "result: $result"
        echo "CONNECTION_STRING=$result" >> "$GITHUB_OUTPUT"
        #terraform output -raw connection_string
 
