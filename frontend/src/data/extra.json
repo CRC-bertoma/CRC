@@ -1,0 +1,34 @@
+{
+    "experience": [{
+            "id": 1,
+            "link": "https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/associate/ccna.html",
+            "company": "Cisco",
+            "title": "CCNA Level 1, networking and switching",
+            "dateFrom": "2018",
+            "dateTo": "Current",
+            "info": [
+                "Intermediate networking knowledge."
+            ],
+            "stack": ["TCP/IP", "Networking", "ISO-OSI"],
+            "logowidth": 80,
+            "colourPrimary": "linear-gradient(to bottom, #F6D5F7, #FBE9D7)",
+            "colourSecondary": "linear-gradient(to bottom, #F6D5F7, #FBE9D7)"
+        },
+        {
+            "id": 0,
+            "link": "./htb.pdf",
+            "company": "Hack the Box",
+            "title": "Cybersecurity training",
+            "dateFrom": "November 2021",
+            "dateTo": "current",
+            "info": [
+                "Hack the Box is a practical online cybersecurity training platform.",
+                "I learnt mainly about web and operating system's security."
+            ],
+            "stack": ["Web penetration testing", "SQL Injections", "Linux Foundamentals"],
+            "logoheight": 80,
+            "colourPrimary": "linear-gradient(to bottom, #a1f100, #1c8513)",
+            "colourSecondary": "linear-gradient(to bottom, #a1f100, #1c8513)"
+        }
+    ]
+}

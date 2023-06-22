@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- github follow -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="css/page.css">
+    <link rel="stylesheet" type="text/css" href="css/about-me.css">
+    <link rel="stylesheet" type="text/css" href="css/projects.css">
+    <link rel="stylesheet" type="text/css" href="css/challenges.css">
+    <link rel="stylesheet" type="text/css" href="css/topbar.css">
+    <link rel="stylesheet" type="text/css" href="css/sidebar.css">
+    <link rel="stylesheet" type="text/css" href="css/scroll-down.css">
+    <link rel="stylesheet" type="text/css" href="css/animations.css">
+
+    <!-- mobile stuff -->
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
+
+<body>
+    <div id="page" class="page">
+        <!-- sidebar  -->
+        <div class="sidebar">
+            <div class="sidebar-item sidebar-item-selected" id="s1" onclick="setLevel(1)">
+                <p>#About Me</p>
+            </div>
+            <div class="sidebar-item" id="s2" onclick="setLevel(2)">
+                <p>#Projects</p>
+            </div>
+            <div class="sidebar-item" id="s3" onclick="setLevel(3)">
+                <p>#Challenges</p>
+            </div>
+        </div>
+        <!-- topbar  -->
+        <div class="topbar">
+            <p class="title-contact">Contact me:</p>
+            <p class="description-contact">
+                <img src="assets/email-logo.png" class="logo-contact" /><a class="email-link" href="mailto:marcobertolino.developer@gmail.com" target="_top">marcobertolino.developer@gmail.com</a></p>
+            <div class="follow-github">
+                <a class="github-button" href="https://github.com/bertomaa" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" aria-label="Follow @bertoma on GitHub">Follow @bertomaa</a>
+            </div>
+            <div class="topbar-divider">
+            </div>
+        </div>
+        <!-- Scroll Down -->
+        <div class="scroll-down" id="scrollDown" onclick="scrollDownClicked()">
+            <img src="assets/arrow-down.png" />
+            <p>
+                SCROLL
+            </p>
+            <img src="assets/arrow-down.png" />
+        </div>
+        <!-- About me  -->
+        <div class="square-container">
+            <div class="square square-left" id="l1">
+                <p class="my-name">MARCO
+                    <BR> BERTOLINO</p><br>
+                <p class="my-description">20 years old</p>
+                <p class="my-description"> Born in Vicenza</p>
+                <p class="my-description">Living in Trento</p>
+                <p class="my-description">2 year student in Computer Science</p>
+                <p class="my-description">Worked as Mobile Developer</p>
+                <p class="my-description">I like challenges</p>
+                </p><br>
+                <p class="my-description">Flutter</p>
+                <p class="my-description">C/C++</p>
+                <p class="my-description">Java</p>
+                <p class="my-description">HTML - CSS</p>
+                <p class="my-description">SQL</p>
+                <p class="my-description">Javascript</p>
+                <p class="my-description">PHP</p>
+                </p>
+            </div>
+            <div class="square square-right" id="r1">
+                <img src="assets/profile-pic.jpg" class="right-pic" />
+            </div>
+        </div>
+        <!-- Projects  -->
+        <div class="square-container">
+            <div class="square square-left hidden" id="l2">
+                <p class="title-project">One of my best Projects:<br>"Idem con Patate"</p><br>
+                <div class="description-project">
+                    <p>
+                        Idem con Patate: a mobile app for a fast food chain in Veneto. <br><br></p>
+                    <p>
+                        I have designed and wrote everything: frontend to backend.<br><br></p>
+                    <p>
+                        I have used Flutter, a Google crossPlatform Framework based on dart to build the app, and Firebase as a backend.
+                        <br></p>
+                    <div class="download-buttons-row">
+                        <a target="_blank" href='https://play.google.com/store/apps/details?id=com.marcobertolino.idemConPatate&hl=it&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                            <img style="height: 40px; margin: 10px;" alt='Get it on Google Play' src='assets/play.png' />
+                        </a>
+                        <a target="_blank" href="https://apps.apple.com/it/app/idem-con-patate/id1458531739?mt=8" style="margin: 10px;display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/en-us/badge-lrg.svg?releaseDate=2019-04-05&kind=iossoftware&bubble=ios_apps) no-repeat;width:135px;height:40px;"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="square square-right hidden" id="r2">
+                <img src="assets/idem-logo.png" class="right-pic project-pic" />
+            </div>
+        </div>
+        <!-- Challenges -->
+        <div class="square-container">
+            <div class="square square-left hidden" id="l3">
+                <p class="title-challenges">I said I like <span class="challenges">Challenges...</span></p><br>
+                <div class="description-challenges">
+                    <p>
+                        <span class="challenge-location">UltraHack - ​Trento</span><br>2° classified Team out of 12
+                        <br><br></p>
+                    <p>
+                        <span class="challenge-location">NOI SFSCon - ​Bolzano</span><br> Team winner of Simedia Challenge
+                        <br></p><br>
+                    <p>
+                        <span class="challenge-location">Reply Code - WorldWide</span></Reply><br> 104° Team classified out of 2800
+                        <br></p><br>
+                    <p>
+                        <span class="challenge-location">Google Hash Code - WorldWide</span><br> 3008° Team classified out of 11000
+                        <br></p>
+                </div>
+            </div>
+            <div class="square square-right hidden" id="r3">
+                <img src="assets/winners.jpeg" class="right-pic" />
+            </div>
+        </div>
+    </div>
+    <script>
+        var level = 1;
+        canScroll = true;
+        showScrollDown = true;
+
+        const animationLockTime = 1100;
+        const addHiddenClassOffset = 100;
+        const scrollDownAnimationFrequency = 3000;
+        const scrollDownAnimationBeginAfter = 5000;
+        const appearToDisappearOffeset = 0;
+        const pageNumber = 3;
+
+        disappearUp = "disappearUp";
+        appearUp = "appearUp";
+        disappearDown = "disappearDown";
+        appearDown = "appearDown";
+        animated = "animate";
+
+        document.getElementById("page").onwheel = transition;
+        beginToAnimateScrollDown();
+
+        function setLevel(l) {
+            // mobile 
+            if (document.documentElement.clientWidth < 700) {
+                for (let i = 1; i <= pageNumber; i++) {
+                    console.log(i);
+                    if (i == l) {
+                        changeSidebarItem(i);
+                        document.getElementById("l" + i).classList.remove("hidden");
+                        document.getElementById("r" + i).classList.remove("hidden");
+                    } else {
+                        document.getElementById("l" + i).classList.add("hidden");
+                        document.getElementById("r" + i).classList.add("hidden");
+                    }
+                }
+
+            } else {
+                // desktop
+                var event = {
+                    "deltaY": (l - level)
+                };
+                if (event.deltaY != 0) {
+                    transition(event);
+                    setTimeout(() => {
+                        if (level != l)
+                            setLevel(l);
+                    }, animationLockTime);
+                }
+            }
+        }
+
+        function scrollDownClicked() {
+            showScrollDown = false;
+            scrollDown.classList.remove(animated, "scrollDownShake", "scroll-down");
+            scrollDown.classList.add("hidden");
+            console.log(scrollDown);
+            setLevel(2);
+        }
+
+        function changeSidebarItem(l) {
+            for (let i = 1; i <= pageNumber; i++) {
+                if (i == l) {
+                    document.getElementById("s" + i).classList.add("sidebar-item-selected");
+                } else {
+                    document.getElementById("s" + i).classList.remove("sidebar-item-selected");
+                }
+            }
+        }
+
+        function transition(event) {
+            if (showScrollDown) {
+                scrollDownClicked();
+            }
+            if (canScroll) {
+                if (event.deltaY > 0) {
+                    //scroll down
+                    if (level < 3) {
+                        if (document.documentElement.clientWidth < 700) {
+                            setLevel(++level);
+                            return;
+                        }
+                        changeSidebarItem(level + 1);
+                        canScroll = false;
+                        level++;
+                        disappearScrollDown(level - 1);
+                        setTimeout(() => {
+                            appearScrollDown(level);
+                        }, appearToDisappearOffeset);
+                        setTimeout(() => {
+                            canScroll = true;
+                        }, animationLockTime);
+                    }
+                } else {
+                    //scroll up
+                    if (level > 1) {
+                        if (document.documentElement.clientWidth < 700) {
+                            setLevel(--level);
+                            return;
+                        }
+                        changeSidebarItem(level - 1);
+                        canScroll = false;
+                        level--;
+                        disappearScrollUp(level + 1);
+                        setTimeout(() => {
+                            appearScrollUp(level);
+                        }, appearToDisappearOffeset);
+                        setTimeout(() => {
+                            canScroll = true;
+                        }, animationLockTime);
+                    }
+                }
+            }
+        }
+
+        function switchPageOnMobile() {
+
+        }
+
+        function animateScrollDown() {
+            scrollDown.classList.add(animated, "scrollDownShake");
+            setTimeout(() => {
+                scrollDown.classList.remove(animated, "scrollDownShake");
+            }, 1500);
+        }
+
+        function animateScrollDownLoop() {
+            var loopId = setInterval(() => {
+                if (!showScrollDown)
+                    clearInterval(loopId);
+                animateScrollDown();
+            }, scrollDownAnimationFrequency);
+        }
+
+        function beginToAnimateScrollDown() {
+            setTimeout(() => {
+                animateScrollDownLoop();
+            }, scrollDownAnimationBeginAfter);
+        }
+
+        function disappearScrollDown(index) {
+            document.getElementById("l" + index).classList.add(animated, disappearUp);
+            document.getElementById("r" + index).classList.add(animated, disappearDown);
+            setTimeout(() => {
+                completeDisappearScrollDown(index)
+            }, (animationLockTime - addHiddenClassOffset));
+        }
+
+        function completeDisappearScrollDown(index) {
+            document.getElementById("l" + index).classList.add("hidden");
+            document.getElementById("r" + index).classList.add("hidden");
+            document.getElementById("l" + index).classList.remove(animated, disappearUp);
+            document.getElementById("r" + index).classList.remove(animated, disappearDown);
+        }
+
+        function appearScrollDown(index) {
+            document.getElementById("l" + index).classList.remove("hidden");
+            document.getElementById("r" + index).classList.remove("hidden");
+            document.getElementById("l" + index).classList.add(animated, appearUp);
+            document.getElementById("r" + index).classList.add(animated, appearDown);
+            setTimeout(() => {
+                completeAppearScrollDown(index)
+            }, (animationLockTime - addHiddenClassOffset));
+        }
+
+        function completeAppearScrollDown(index) {
+            document.getElementById("l" + index).classList.remove(animated, appearUp);
+            document.getElementById("r" + index).classList.remove(animated, appearDown);
+        }
+
+        function disappearScrollUp(index) {
+            document.getElementById("l" + index).classList.add(animated, disappearDown);
+            document.getElementById("r" + index).classList.add(animated, disappearUp);
+            setTimeout(() => {
+                completeDisappearScrollUp(index)
+            }, (animationLockTime - addHiddenClassOffset));
+        }
+
+        function completeDisappearScrollUp(index) {
+            document.getElementById("l" + index).classList.add("hidden");
+            document.getElementById("r" + index).classList.add("hidden");
+            document.getElementById("l" + index).classList.remove(animated, disappearDown);
+            document.getElementById("r" + index).classList.remove(animated, disappearUp);
+        }
+
+        function appearScrollUp(index) {
+            document.getElementById("l" + index).classList.remove("hidden");
+            document.getElementById("r" + index).classList.remove("hidden");
+            document.getElementById("l" + index).classList.add(animated, appearDown);
+            document.getElementById("r" + index).classList.add(animated, appearUp);
+            setTimeout(() => {
+                completeAppearScrollUp(index)
+            }, (animationLockTime - addHiddenClassOffset));
+        }
+
+        function completeAppearScrollUp(index) {
+            document.getElementById("l" + index).classList.remove(animated, appearDown);
+            document.getElementById("r" + index).classList.remove(animated, appearUp);
+        }
+    </script>
+</body>
+
+</html>

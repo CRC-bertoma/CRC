@@ -1,0 +1,145 @@
+:root {
+    --animation-time: 0.8s;
+    --animation-timing-function-disapear: ease-out;
+    --animation-timing-function-appear: ease-in;
+    --color: #BBB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    width: auto !important;
+    background-color: #111;
+}
+
+.page {
+    color: #BBB;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.hidden {
+    display: none;
+}
+
+.mobile.alert {
+    display: none;
+}
+
+.square-container {
+    pointer-events: none;
+    min-width: 700px;
+    position: absolute;
+    display: flex;
+    margin-top: 70px;
+    left: 200px;
+    right: 200px;
+    justify-content: center;
+    bottom: 120px;
+    top: 40px;
+}
+
+.square {
+    pointer-events: initial;
+    width: 50%;
+    position: relative;
+}
+
+.square-left {
+    font-size: 1.3em;
+    padding-right: 30px;
+}
+
+.square-right {
+    padding-left: 30px;
+}
+
+.right-pic {
+    min-width: 300px;
+    min-height: 300px;
+    max-width: 80%;
+    max-height: 80%;
+    border: 2px solid var(--color);
+}
+
+@media only screen and (max-width: 1200px) {
+    .square-container {
+        right: 0;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .square-container {
+        left: 30px;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .square {
+        width: auto;
+    }
+    body {
+        width: auto;
+        height: auto;
+        overflow: auto;
+    }
+    .page {
+        width: auto;
+        height: auto;
+        position: absolute;
+    }
+    .square-container {
+        height: 0px;
+        flex-direction: column-reverse;
+        display: flex;
+        height: auto;
+        min-width: 100%;
+        position: relative;
+        display: flex;
+        margin-top: 15px;
+        left: 15px;
+        right: auto;
+        justify-content: center;
+        bottom: 120px;
+        top: 80px;
+    }
+    .square {
+        min-width: auto;
+        min-height: auto;
+        width: 100%;
+        left: 10px;
+    }
+    .square-left {
+        max-width: 1000px;
+        padding-right: 0;
+        padding-bottom: 30px;
+        font-size: 1em;
+    }
+    .square-right {
+        padding-left: 0;
+    }
+    .right-pic {
+        min-width: 80%;
+        min-height: 80%;
+        max-width: 300px;
+        max-height: auto;
+        border: 2px solid var(--color);
+    }
+    html,
+    body {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+}
+
+@media only screen and (max-height: 700px) {
+    .square-left {
+        font-size: 1em;
+    }
+}

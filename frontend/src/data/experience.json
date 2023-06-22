@@ -1,0 +1,53 @@
+{
+    "METTERE": "HTB",
+    "experience": [{
+            "id": 0,
+            "link": "https://www.rangerssicurezza.com/",
+            "company": "Rangers Vicenza",
+            "title": "C# Project Developer",
+            "dateFrom": "November 2019",
+            "dateTo": "January 2020",
+            "info": [
+                "I developed a managerial software. The company asked for a system able to keep track of the locations of all the keys of the places they have under surveillance.",
+                "An employer taking some keys is also going to annotate it into the server and sign the process with a touch interface."
+            ],
+            "stack": ["C#", "C# Forms"],
+            "logoheight": 80,
+            "colourPrimary": "linear-gradient(to bottom, #f4592b, #f28d25)",
+            "colourSecondary": "linear-gradient(to bottom, #f4592b, #f28d25)"
+        },
+        {
+            "id": 1,
+            "link": "https://www.egugo.ai",
+            "company": "Edugo.ai",
+            "title": "Frontend Engineer Intern",
+            "dateFrom": "October 2020",
+            "dateTo": "April 2021",
+            "info": [
+                "I developed, using React Native, the core functionalities of the Edugo.ai language learning app.",
+                "I developed some side features of the core web platform in React.js."
+            ],
+            "stack": ["React.js", "React Native", "AntD", "Figma", "Node.js"],
+            "logowidth": 80,
+            "colourPrimary": "linear-gradient(to bottom, #465a90, #1e3470)",
+            "colourSecondary": "linear-gradient(to bottom, #465a90, #1e3470)"
+        },
+        {
+            "id": 2,
+            "link": "https://www.idemconpatate.net/",
+            "company": "Idem con Patate",
+            "title": "Full stack Developer",
+            "dateFrom": "2019",
+            "dateTo": "Current",
+            "info": [
+                "Fully developed with Flutter and Firebase the Idem mobile app.",
+                "Idem lets customers of this sandwich shop franchise register they purchases in the app. Clients can receive discounts and offers through the app.",
+                "A companion managment app was also developed."
+            ],
+            "stack": ["Flutter", "Firebase", "App Publishment"],
+            "logowidth": 80,
+            "colourPrimary": "linear-gradient(to bottom, #F6D5F7, #FBE9D7)",
+            "colourSecondary": "linear-gradient(to bottom, #F6D5F7, #FBE9D7)"
+        }
+    ]
+}

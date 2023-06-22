@@ -1,0 +1,226 @@
+:root {
+    --primary: rgba(255, 255, 255, 0.7);
+    /* --primary: rgba(155, 68, 34, 0.7); */
+    --primary-selected: rgba(155, 68, 34, 0.7);
+    --shadow: lightgreen;
+    /* accessible everywhere */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+    width: auto !important;
+}
+
+.bg-image {
+    position: fixed;
+    background-image: url("images/foglie.jpg");
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.weather-container {
+    width: 700px;
+    border: 3px solid var(--primary);
+    border-radius: 25px;
+    margin: 40px;
+    top: 350px;
+    position: fixed;
+    left: 50%;
+    margin-left: -350px;
+    color: black;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.search-bar {
+    width: 700px;
+    border: 4px solid var(--primary);
+    height: 100px;
+    top: 50px;
+    position: fixed;
+    left: 50%;
+    margin-left: -350px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.text-input {
+    max-width: 600px;
+    width: 80%;
+    border: 0px;
+    height: 92px;
+    position: relative;
+    left: 50%;
+    margin-left: -300px;
+    border-radius: 20px;
+    font-size: 50px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Montserrat', Courier, monospace, serif;
+}
+
+::placeholder {
+    color: rgba(175, 175, 175, 0.7);
+}
+
+.min-max-temp {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    width: 50px;
+}
+
+.min-temp {
+    color: rgb(40, 163, 245);
+}
+
+.max-temp {
+    color: rgb(253, 67, 67);
+}
+
+.row-weather-container {
+    font-family: 'Montserrat', Courier, monospace, serif;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid var(--primary);
+    color: white;
+    margin: 5px;
+}
+
+.row-weather-container:last-child {
+    border-bottom: 0;
+}
+
+.weather-temp-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    width: 200px;
+}
+
+.humidity {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 30px;
+}
+
+.humidity p {
+    margin: 5px;
+    font-size: 1.3em;
+}
+
+.feel-like {
+    font-size: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+.temp-icon {
+    height: 30px;
+}
+
+.search-result {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    border: 0;
+}
+
+.text-input:focus {
+    outline: none;
+}
+
+@media only screen and (max-width: 1000px) {
+    .feel-like {
+        display: none;
+    }
+    .humidity {
+        display: none;
+    }
+    .weather-temp-row {
+        width: 70px;
+        font-size: 1.7em;
+    }
+    .search-bar {
+        border: 2px solid rgba(255, 255, 255, 0.7);
+        height: 50px;
+        width: 90%;
+        top: 50px;
+        position: absolute;
+        left: 5%;
+        margin-left: 0;
+    }
+    .text-input {
+        height: 46px;
+        font-size: 20px;
+        width: 70%;
+        position: relative;
+        left: 10%;
+        margin-left: 0;
+    }
+    body {
+        overflow: auto;
+        width: auto !important;
+    }
+    .search-result {
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        right: 25px;
+        top: 12px;
+        border: 0;
+    }
+    .weather-container {
+        font-size: 0.8em;
+        width: 90%;
+        top: 215px;
+        position: absolute;
+        left: 5%;
+        margin-left: 0;
+    }
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                    supported by Chrome, Opera and Firefox */
+}

@@ -1,0 +1,64 @@
+@import "page.css";
+.title-contact {
+    font-family: 'Courier New', Courier, monospace, serif;
+    font-size: 20px;
+    color: var(--color);
+}
+
+.description-contact {
+    font-family: 'Courier New', Courier, monospace, serif;
+    font-size: 15px;
+    /* text-align: justify; */
+    color: var(--color);
+}
+
+.email-link {
+    /* text-decoration: none; */
+    color: var(--color);
+    padding: 0 0 0 10px;
+}
+
+.logo-contact {
+    height: 10px;
+}
+
+.topbar {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 2;
+    background-color: #111;
+}
+
+.topbar-divider {
+    position: fixed;
+    top: 60px;
+    height: 1px;
+    width: 100%;
+    min-width: 800px;
+    background-color: #BBB;
+}
+
+@media only screen and (max-width: 900px) {
+    .topbar {
+        position: fixed;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        z-index: 2;
+        background-color: #111;
+    }
+    .topbar-divider {
+        top: 80px;
+    }
+    .title-contact {
+        display: none;
+    }
+    .follow-github {
+        display: none;
+    }
+}

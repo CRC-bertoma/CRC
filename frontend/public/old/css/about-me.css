@@ -1,0 +1,30 @@
+.my-name {
+    font-family: 'Courier New', Courier, monospace, serif;
+    text-align: end;
+    font-size: 50px;
+}
+
+.my-description {
+    font-family: 'Courier New', Courier, monospace, serif;
+    text-align: end;
+}
+
+.my-description::after {
+    content: ' • ';
+}
+
+@media only screen and (max-width: 700px) {
+    .my-description {
+        font-size: 1em;
+        text-align: start;
+    }
+    .my-description::after {
+        content: none;
+    }
+    .my-description::before {
+        content: ' • ';
+    }
+    .my-name {
+        text-align: start;
+    }
+}

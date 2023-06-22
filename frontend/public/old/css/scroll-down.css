@@ -1,0 +1,41 @@
+@import "page.css";
+.scroll-down {
+    position: fixed;
+    height: 50px;
+    width: 800px;
+    bottom: 70px;
+    /* background-color: brown; */
+    margin: 0 0 0 -400px;
+    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.scroll-down p {
+    font-size: 2.8em;
+    color: #BBB;
+    font-family: 'Courier New', Courier, monospace, serif;
+    padding: 0 20px 0 20px;
+}
+
+.scroll-down img {
+    margin: 13px;
+    height: 25px;
+}
+
+.scroll-down:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+    .scroll-down {
+        display: none;
+    }
+}
+
+@media only screen and (max-height: 650px) {
+    .scroll-down {
+        display: none;
+    }
+}

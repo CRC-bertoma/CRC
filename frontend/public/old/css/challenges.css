@@ -1,0 +1,41 @@
+.title-challenges {
+    font-family: 'Courier New', Courier, monospace, serif;
+    text-align: end;
+    font-size: 40px;
+}
+
+.description-challenges {
+    font-family: 'Courier New', Courier, monospace, serif;
+    text-align: end;
+    right: 0;
+}
+
+.challenge-location {
+    font-size: 1.1em;
+}
+
+.challenge-location::after {
+    content: ' • ';
+}
+
+.challenge-location::before {
+    content: ' • ';
+}
+
+@media only screen and (max-width: 700px) {
+    .title-challenges {
+        padding-top: 30px;
+        text-align: start;
+        font-size: 1.8em;
+    }
+    .description-challenges {
+        font-size: 1em;
+        text-align: start;
+        width: auto;
+        left: 0;
+        margin-bottom: 20px;
+    }
+    .challenge-location {
+        font-size: 1.1em;
+    }
+}

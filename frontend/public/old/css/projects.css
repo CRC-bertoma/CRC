@@ -1,0 +1,47 @@
+.title-project {
+    font-family: 'Courier New', Courier, monospace, serif;
+    text-align: end;
+    font-size: 40px;
+}
+
+.description-project {
+    font-family: 'Courier New', Courier, monospace, serif;
+    text-align: justify;
+    max-width: 400px;
+    position: absolute;
+    right: 0;
+    margin-right: 30px;
+}
+
+.download-buttons-row {
+    position: absolute;
+    margin-top: 20px;
+    right: -30px;
+    width: 330px;
+}
+
+.download-buttons-row a {
+    text-decoration: none;
+}
+
+.project-pic {
+    border: none;
+    padding: 20px;
+}
+
+@media only screen and (max-width: 700px) {
+    .description-project {
+        font-size: 1em;
+        text-align: start;
+        text-align: justify;
+        right: 30px;
+        left: 0;
+    }
+    .download-buttons-row {
+        left: -12px;
+    }
+    .title-project {
+        text-align: start;
+        font-size: 1.8em;
+    }
+}
