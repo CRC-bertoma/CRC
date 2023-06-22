@@ -35,7 +35,7 @@ jobs:
     - name: Terraform Init
       run: |
         terraform init
-        terraform import azurerm_resource_group.rg /subscriptions/099ddccf-1097-4ff8-a993-eae393c7bb34/resourceGroups/CRC-Development
+        terraform import azurerm_resource_group.rg /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development
 
 
     - name: Terraform Validate
