@@ -2,9 +2,9 @@ name: Deploy Infrastructure and Website to Azure
 
 on:
   workflow_dispatch:
-  #push:
-    #branches:
-      #- main
+  push:
+    branches:
+      - main
 
 env:
   TF_VERSION: "1.5.1"
@@ -55,9 +55,15 @@ jobs:
       id: apply
       run: |
         terraform apply -auto-approve
-        output=$(terraform output -raw connection_string | grep -Pv '^\[command]' | sed 's/::debug::Terraform exited with code 0.//g')
+        final="DefaultEndpointsProtocol=https;AccountName=mbcrcstorage;AccountKey=XxQnJbmOrKcr0XemXV58svhb+03eLIQCTpkvTBx5m6CuXnmKEjdyHfLuROfnP56bMWx37k1/Vxqr+AStz1m0Vw==;EndpointSuffix=core.windows.net"
+        output=$(terraform output -raw connection_string | grep -Pv '^\[command]' | sed 's/::debug::Terraform exited with code 0.//g' | tr -d '\n')
         echo "Output: $output"
-        echo "handle=$output" >> "$GITHUB_OUTPUT"
+        if [ $output == $final ]; then
+          echo "Strings are equal"
+        else
+          echo "Strings are not equal"
+        fi
+        echo "handle=$final" >> "$GITHUB_OUTPUT"
 
   build-and-deploy-frontend:
     needs: deploy-IAC
