@@ -68,6 +68,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      
+    - name: testing
+      run: echo ${{ env.CONNECTION_STRING }}
 
     - name: Setup Node.js for React App
       uses: actions/setup-node@v3
