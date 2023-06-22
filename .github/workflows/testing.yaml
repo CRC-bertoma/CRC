@@ -17,7 +17,7 @@ jobs:
     - name: step1
       id: s1
       run: |
-       echo "CONNECTION_STRING=a" >> $GITHUB_OUTPUT
+       echo "CONNECTION_STRING=a" >> "$GITHUB_OUTPUT"
 
   job2:
     needs: job1
