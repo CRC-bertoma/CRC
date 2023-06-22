@@ -57,10 +57,10 @@ jobs:
         terraform apply -auto-approve
         final="DefaultEndpointsProtocol=https;AccountName=mbcrcstorage;AccountKey=XxQnJbmOrKcr0XemXV58svhb+03eLIQCTpkvTBx5m6CuXnmKEjdyHfLuROfnP56bMWx37k1/Vxqr+AStz1m0Vw==;EndpointSuffix=core.windows.net"
         preoutput=$(terraform output -raw connection_string | grep -Pv '^\[command]' | sed 's/::debug::Terraform exited with code 0.//g')
-        output=$(echo $output | tr -d '\n') 
+        output=$(echo $preoutput | tr -d '\n') 
         echo "Output: $output"
         echo "Final: $final"
-        if [ $output == $final ]; then
+        if [[ "$output" == "$final" ]]; then
           echo "Strings are equal"
         else
           echo "Strings are not equal"
