@@ -55,11 +55,11 @@ jobs:
       id: apply
       run: |
         terraform apply -auto-approve
-        output=$(terraform output -raw connection_string | grep -Pv '^\[command]' | )
+        output=$(terraform output -raw connection_string | grep -Pv '^\[command]' | sed 's/::debug::Terraform exited with code 0.//g')
         echo "Output: $output"
-        result=${output%%::*}
-        echo "Result: $result"
-        echo "CONNECTION_STRING=$result" >> "$GITHUB_OUTPUT"
+        #result=${output%%::*}
+        #echo "Result: $result"
+        echo "CONNECTION_STRING=$output" >> "$GITHUB_OUTPUT"
         #terraform output -raw connection_string
 
   build-and-deploy-frontend:
