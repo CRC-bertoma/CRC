@@ -10,7 +10,7 @@ jobs:
   secret-generator:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.generate-secret.outputs.GENERATED_SECRET }}
+      output1: ${{ steps.generate-secret.outputs.handle }}
     steps:
     - id: generate-secret
       shell: bash
