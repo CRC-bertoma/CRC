@@ -74,9 +74,7 @@ jobs:
       
     - name: testing
       run: |
-        echo ${{ env.CONNECTION_STRING }}
-        echo aaa
-        echo ${{ needs.deploy-IAC.outputs.CONNECTION_STRING }}
+        echo ${{ needs.deploy-IAC.outputs.connection_string }}
 
     - name: Setup Node.js for React App
       uses: actions/setup-node@v3
