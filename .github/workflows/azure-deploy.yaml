@@ -64,14 +64,14 @@ jobs:
         node-version: '20.1.0'
 
     - name: Run install
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: install 
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: install 
           
     - name: Build production bundle
-            uses: borales/actions-yarn@v4
-            with:
-              cmd: build
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: build
         
     - name: Upload to Azure Blob Storage
       uses: azure/CLI@v1.0.7
