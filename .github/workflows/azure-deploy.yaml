@@ -55,8 +55,8 @@ jobs:
       id: apply
       run: |
        terraform apply -auto-approve
-       echo "CONNECTION_STRING=$(terraform output -raw connection_string)" >> "$GITHUB_OUTPUT"
-       #echo "CONNECTION_STRING=a" >> "$GITHUB_OUTPUT"
+       #echo "CONNECTION_STRING=$(terraform output -raw connection_string)" >> "$GITHUB_OUTPUT"
+       echo "CONNECTION_STRING=a" >> "$GITHUB_OUTPUT"
        terraform output -raw connection_string
 
   build-and-deploy-frontend:
