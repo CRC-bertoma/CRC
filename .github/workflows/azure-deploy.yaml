@@ -17,7 +17,7 @@ jobs:
   deploy-IAC:
     runs-on: ubuntu-latest
     outputs:
-      connection_string: ${{ steps.apply.outputs.CONNECTION_STRING }}
+      connection_string: ${{ steps.apply.outputs.handle }}
     defaults:
      run:
        shell: bash
@@ -57,7 +57,7 @@ jobs:
         terraform apply -auto-approve
         output=$(terraform output -raw connection_string | grep -Pv '^\[command]' | sed 's/::debug::Terraform exited with code 0.//g')
         echo "Output: $output"
-        echo "CONNECTION_STRING=${output}" >> "$GITHUB_OUTPUT"
+        echo "handle=$output" >> "$GITHUB_OUTPUT"
 
   build-and-deploy-frontend:
     needs: deploy-IAC
