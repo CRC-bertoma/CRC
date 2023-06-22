@@ -14,7 +14,7 @@ env:
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
 jobs:
-  deploy:
+  deploy-IAC:
     runs-on: ubuntu-latest
     defaults:
      run:
@@ -46,22 +46,28 @@ jobs:
       id: terraform
       run: |
         echo "::set-output name=connection_string::$(terraform apply -auto-approve -no-color -json | jq -r .outputs.connection_string.value)"
-      env:
-        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-        
+
+  build-and-deploy-frontend:
+    needs: deploy-IAC
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./frontend
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
     - name: Setup Node.js for React App
       uses: actions/setup-node@v2
       with:
         node-version: '14'
-        
+
     - name: Install and Build React App
       run: |
-        cd ./frontend
         npm install
         npm run build
+
         
     - name: Upload to Azure Blob Storage
       uses: azure/CLI@v1.0.7
