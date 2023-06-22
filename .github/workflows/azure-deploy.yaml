@@ -85,4 +85,4 @@ jobs:
         AZURE_STORAGE_CONNECTION_STRING: ${{ env.CONNECTION_STRING }}
       with:
         inlineScript: |
-          pwd && ls && az storage blob upload-batch --account-name mbcrcstorage -s ./build -d '$web'
+          pwd && ls && az storage blob upload-batch --account-name mbcrcstorage -s ./frontend/build -d '$web'
