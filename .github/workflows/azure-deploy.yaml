@@ -1,0 +1,59 @@
+name: Deploy Infrastructure and Website to Azure
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  TF_VERSION: "1.5.1" 
+  TF_ACTION_WORKING_DIR: "./IAC" # specify the path to your Terraform directory
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: ${{ env.TF_VERSION }}
+        
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Validate
+      run: terraform validate -no-color
+
+    - name: Terraform Plan
+      run: terraform plan -no-color
+      continue-on-error: false
+
+    - name: Terraform Apply
+      run: terraform apply -auto-approve -no-color
+      env:
+        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        
+    - name: Setup Node.js for React App
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+        
+    - name: Install and Build React App
+      run: |
+        cd ./frontend
+        npm install
+        npm run build
+        
+    - name: Upload to Azure Blob Storage
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az storage blob upload-batch --account-name mbcrcstorage -s ./frontend/build -d '$web'
+        env:
+          AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
