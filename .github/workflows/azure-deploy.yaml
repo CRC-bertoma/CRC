@@ -50,6 +50,8 @@ jobs:
   build-and-deploy-frontend:
     needs: deploy-IAC
     runs-on: ubuntu-latest
+    env:
+      CI: false
     defaults:
       run:
         shell: bash
