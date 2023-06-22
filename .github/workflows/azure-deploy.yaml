@@ -54,11 +54,12 @@ jobs:
     - name: Terraform Apply
       id: apply
       run: |
-       terraform apply -auto-approve
-       output=$(terraform output -json | jq -r .connection_string.value)
-       echo "output: $output"
-       echo "CONNECTION_STRING=$output" >> "$GITHUB_OUTPUT"
-       #terraform output -raw connection_string
+        terraform apply -auto-approve
+        output=$(terraform output -json)
+        echo "Output: $output"
+        connection_string=$(echo $output | jq -r .connection_string.value)
+        echo "CONNECTION_STRING=$connection_string" >> "$GITHUB_OUTPUT"
+        #terraform output -raw connection_string
 
   build-and-deploy-frontend:
     needs: deploy-IAC
