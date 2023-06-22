@@ -67,11 +67,13 @@ jobs:
       uses: borales/actions-yarn@v4
       with:
         cmd: install 
+        dir: 'frontend'
           
     - name: Build production bundle
       uses: borales/actions-yarn@v4
       with:
         cmd: build
+        dir: 'frontend'
         
     - name: Upload to Azure Blob Storage
       uses: azure/CLI@v1.0.7
