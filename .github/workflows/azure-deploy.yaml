@@ -55,7 +55,7 @@ jobs:
       id: apply
       run: |
         terraform apply -auto-approve
-        output=$(terraform output -json)
+        output=$(terraform output -json | grep -Pv '^\[command]')
         echo "Output: $output"
         connection_string=$(echo $output | jq -r .connection_string.value)
         echo "CONNECTION_STRING=$connection_string" >> "$GITHUB_OUTPUT"
