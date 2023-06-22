@@ -77,7 +77,7 @@ jobs:
         cmd: build
         dir: 'frontend'
     - name: Check build
-      run: ls
+      run: ls build
         
     - name: Upload to Azure Blob Storage
       uses: azure/CLI@v1.0.7
