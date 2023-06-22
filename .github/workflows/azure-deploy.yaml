@@ -76,6 +76,8 @@ jobs:
       with:
         cmd: build
         dir: 'frontend'
+    - name: Check connection string
+      run: echo "${{ steps.terraform.outputs.connection_string }}"
         
     - name: Upload to Azure Blob Storage
       uses: azure/CLI@v1.0.7
