@@ -45,7 +45,7 @@ jobs:
     - name: Terraform Apply
       id: terraform
       run: |
-        echo "::set-output name=connection_string::$(terraform apply -auto-approve -no-color -json | jq -r .outputs.connection_string.value)"
+        echo "CONNECTION_STRING=$(terraform apply -auto-approve -no-color -json | jq -r .outputs.connection_string.value)" >> $GITHUB_ENV
 
   build-and-deploy-frontend:
     needs: deploy-IAC
@@ -82,7 +82,7 @@ jobs:
     - name: Upload to Azure Blob Storage
       uses: azure/CLI@v1.0.7
       env:
-        AZURE_STORAGE_CONNECTION_STRING: ${{ steps.terraform.outputs.connection_string }}
+        AZURE_STORAGE_CONNECTION_STRING: ${{ env.CONNECTION_STRING }}
       with:
         inlineScript: |
           az storage blob upload-batch --account-name mbcrcstorage -s ./build -d '$web'
