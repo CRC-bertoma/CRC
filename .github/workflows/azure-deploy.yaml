@@ -40,6 +40,7 @@ jobs:
         terraform import azurerm_resource_group.rg /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development || true
         terraform import azurerm_storage_account.sa /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development/providers/Microsoft.Storage/storageAccounts/mbcrcstorage || true
         terraform import azurerm_cdn_profile.cdn /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development/providers/Microsoft.Cdn/profiles/mbcrc-cdn || true
+        terraform import azurerm_cdn_endpoint.endpoint /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development/providers/Microsoft.Cdn/profiles/mbcrc-cdn/endpoints/mbcrc-cdn-endpoint || true
 
     - name: Terraform Validate
       run: terraform validate -no-color
