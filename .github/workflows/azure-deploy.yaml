@@ -83,4 +83,4 @@ jobs:
         AZURE_STORAGE_CONNECTION_STRING: ${{ steps.terraform.outputs.connection_string }}
       with:
         inlineScript: |
-          az storage blob upload-batch --account-name mbcrcstorage -s ./frontend/build -d '$web'
+          az storage blob upload-batch --account-name mbcrcstorage -s ./build -d '$web'
