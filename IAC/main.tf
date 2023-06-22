@@ -41,3 +41,8 @@ resource "azurerm_cdn_endpoint" "endpoint" {
   }
 }
 
+output "connection_string" {
+  description = "The connection string of the storage account"
+  value       = azurerm_storage_account.sa.primary_connection_string
+  sensitive   = true
+}

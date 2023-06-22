@@ -1,6 +1,7 @@
 name: Deploy Infrastructure and Website to Azure
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -15,6 +16,9 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+
+    - name: Install jq
+      run: sudo apt-get install jq
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
@@ -32,7 +36,9 @@ jobs:
       continue-on-error: false
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve -no-color
+      id: terraform
+      run: |
+        echo "::set-output name=connection_string::$(terraform apply -auto-approve -no-color -json | jq -r .outputs.connection_string.value)"
       env:
         AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
@@ -51,9 +57,10 @@ jobs:
         npm run build
         
     - name: Upload to Azure Blob Storage
-      uses: azure/CLI@v1
+      uses: azure/CLI@v2
       with:
         inlineScript: |
           az storage blob upload-batch --account-name mbcrcstorage -s ./frontend/build -d '$web'
         env:
-          AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          AZURE_STORAGE_CONNECTION_STRING: ${{ steps.terraform.outputs.connection_string }}
+
