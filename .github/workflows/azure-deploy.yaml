@@ -49,7 +49,7 @@ jobs:
       id: terraform
       run: |
        terraform apply -auto-approve
-       echo "CONNECTION_STRING=$(terraform output -raw connection_string)" >> $GITHUB_ENV
+       echo "CONNECTION_STRING=$(terraform output -raw connection_string)" >> "$GITHUB_ENV"
        terraform output -raw connection_string
 
   build-and-deploy-frontend:
@@ -85,7 +85,7 @@ jobs:
     - name: Upload to Azure Blob Storage
       uses: azure/CLI@v1.0.7
       env:
-        AZURE_STORAGE_CONNECTION_STRING: ${{ needs.deploy-IAC.outputs.connection_string }}
+        AZURE_STORAGE_CONNECTION_STRING: ${{ env.CONNECTION_STRING }}
       with:
         inlineScript: |
           echo "Connection string: $AZURE_STORAGE_CONNECTION_STRING"
