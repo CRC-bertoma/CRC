@@ -24,5 +24,5 @@ jobs:
     - name: use secret
       shell: bash
       run: |
-        SECRET_HANDLE="${{ needs.secret-generator.outputs.handle }}"
+        SECRET_HANDLE="${{ needs.secret-generator.outputs.output1 }}"
         echo "We retrieved our masked secret: $SECRET_HANDLE"
