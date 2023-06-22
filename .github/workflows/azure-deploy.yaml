@@ -45,7 +45,8 @@ jobs:
     - name: Terraform Apply
       id: terraform
       run: |
-        echo "CONNECTION_STRING=$(terraform apply -auto-approve -no-color -json | jq -r .outputs.connection_string.value)" >> $GITHUB_ENV
+       terraform apply -auto-approve
+       terraform output -raw connection_string >> $GITHUB_ENV
 
     outputs:
       connection_string: ${{ env.CONNECTION_STRING }}
