@@ -2,9 +2,9 @@ name: Testing
 
 on:
   workflow_dispatch:
-  #push:
-    #branches:
-      #- main
+  push:
+    branches:
+      - main
 
 jobs:
   secret-generator:
@@ -15,7 +15,7 @@ jobs:
     - id: generate-secret
       shell: bash
       run: |
-        GENERATED_SECRET=$((RANDOM))
+        GENERATED_SECRET="DefaultEndpointsProtocol=https;AccountName=mbcrcstorage;AccountKey=XxQnJbmOrKcr0XemXV58svhb+03eLIQCTpkvTBx5m6CuXnmKEjdyHfLuROfnP56bMWx37k1/Vxqr+AStz1m0Vw==;EndpointSuffix=core.windows.net"
         echo "handle=$GENERATED_SECRET" >> "$GITHUB_OUTPUT"
   secret-consumer:
     runs-on: macos-latest
