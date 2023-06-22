@@ -59,7 +59,7 @@ jobs:
         echo "Output: $output"
         result=${output%%::*}
         echo "Result: $result"
-        echo "CONNECTION_STRING=$output" >> "$GITHUB_OUTPUT"
+        echo "CONNECTION_STRING=$result" >> "$GITHUB_OUTPUT"
         #terraform output -raw connection_string
 
   build-and-deploy-frontend:
