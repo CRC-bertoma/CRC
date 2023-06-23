@@ -1,4 +1,4 @@
-name: Deploy Functions to Azure
+name: Deploy website IAC and content to Azure
 
 on:
   workflow_dispatch:
