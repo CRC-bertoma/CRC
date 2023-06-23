@@ -26,5 +26,17 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     data = {
         'total_entries': total
     }
+    
+    # Enable CORS
+    headers = {
+        'Access-Control-Allow-Origin': '*',  # Update this with the appropriate domain
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',  # Add any other allowed methods
+        'Access-Control-Allow-Headers': 'Content-Type',  # Add any other allowed headers
+    }
 
-    return func.HttpResponse(json.dumps(data), status_code=200)
+    if req.method == 'OPTIONS':
+        # Handle pre-flight CORS request
+        return func.HttpResponse(headers=headers)
+    
+
+    return func.HttpResponse(json.dumps(data), status_code=200, headers=headers)

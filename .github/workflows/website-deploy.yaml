@@ -108,4 +108,7 @@ jobs:
       with:
         inlineScript: |
           echo "Connection string: $AZURE_STORAGE_CONNECTION_STRING"
+          # Clean the blob storage
+          az storage blob delete-batch --account-name mbcrcstorage -s '$web'
+          # Then upload the new code
           az storage blob upload-batch --account-name mbcrcstorage -s ./frontend/build -d '$web'
