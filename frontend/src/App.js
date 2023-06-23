@@ -20,7 +20,6 @@ function App() {
       }
     })
     .then(response => {
-      console.log(response);
       console.log("Visitor added");
     })
     .catch(error => {
