@@ -22,4 +22,4 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     
     container.upsert_item(body=data)
     
-    return func.HttpResponse("Done", status_code=200)
+    return func.HttpResponse("Added", status_code=200)
