@@ -23,7 +23,7 @@ resource "azurerm_service_plan" "visitors-service-plan" {
 }
 
 resource "azurerm_linux_function_app" "visitors-app" {
-  name                = "mb-crc-visitors-app8"
+  name                = "mb-crc-visitors-app"
   resource_group_name = azurerm_resource_group.frg.name
   location            = azurerm_resource_group.frg.location
 
@@ -32,10 +32,10 @@ resource "azurerm_linux_function_app" "visitors-app" {
   service_plan_id            = azurerm_service_plan.visitors-service-plan.id
 
   https_only      = true
-  zip_deploy_file = "../api/visitors-functions.zip"
+  #zip_deploy_file = "../../api/visitors-functions.zip"
   site_config {
     application_stack {
-      python_version = 3.10
+      python_version = 3.9
     }
   }
 

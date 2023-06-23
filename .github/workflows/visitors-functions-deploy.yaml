@@ -6,13 +6,13 @@ on:
     branches:
       - main
 
-env: #CHANGE APP NAME
-  AZURE_FUNCTIONAPP_NAME: 'mb-crc-visitors-app8'   # set this to your function app name on Azure
+env: 
+  AZURE_FUNCTIONAPP_NAME: 'mb-crc-visitors-app'   # set this to your function app name on Azure
   AZURE_FUNCTIONAPP_PACKAGE_PATH: './api'
   PYTHON_VERSION: '3.9'
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-functions:
     runs-on: ubuntu-latest
     environment: dev
     steps:
