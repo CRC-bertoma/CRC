@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./App.css";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
@@ -10,6 +10,24 @@ import Navbar from "./components/navbar/Navbar";
 // import Timeline from "./components/timeline/timeline";
 
 function App() {
+
+  useEffect(() => {
+    fetch("https://mb-crc-visitors-app.azurewebsites.net/api/AddVisitor?", {
+      method: "GET",
+      mode: 'no-cors',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => {
+      console.log(response);
+      console.log("Visitor added");
+    })
+    .catch(error => {
+        console.error(error);
+    });
+  }, []);
+
   return (
     <div className="App">
       <Home />
