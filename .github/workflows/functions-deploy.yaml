@@ -1,4 +1,4 @@
-name: Deploy Infrastructure and Website to Azure
+name: Deploy Functions to Azure
 
 on:
   workflow_dispatch:
