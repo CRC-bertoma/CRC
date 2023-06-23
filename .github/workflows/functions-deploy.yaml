@@ -1,0 +1,111 @@
+name: Deploy Infrastructure and Website to Azure
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+env:
+  TF_VERSION: "1.5.1"
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
+jobs:
+  deploy-IAC:
+    runs-on: ubuntu-latest
+    outputs:
+      connection_string: ${{ steps.apply.outputs.handle }}
+    defaults:
+     run:
+       shell: bash
+       working-directory: ./IAC/website
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install jq
+      run: sudo apt-get install jq
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: ${{ env.TF_VERSION }}
+        
+    - name: Terraform Init
+      run: terraform init 
+    
+    - name: Terraform Fetch
+      run: |
+        terraform import azurerm_resource_group.rg /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development || true
+        terraform import azurerm_storage_account.sa /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development/providers/Microsoft.Storage/storageAccounts/mbcrcstorage || true
+        terraform import azurerm_cdn_profile.cdn /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development/providers/Microsoft.Cdn/profiles/mbcrc-cdn || true
+        terraform import azurerm_cdn_endpoint.endpoint /subscriptions/$ARM_SUBSCRIPTION_ID/resourceGroups/CRC-Development/providers/Microsoft.Cdn/profiles/mbcrc-cdn/endpoints/mbcrc-cdn-endpoint || true
+
+    - name: Terraform Validate
+      run: terraform validate -no-color
+
+    - name: Terraform Plan
+      run: terraform plan -no-color
+      continue-on-error: false
+
+    - name: Terraform Apply
+      id: apply
+      run: |
+        terraform apply -auto-approve
+        final="DefaultEndpointsProtocol=https;AccountName=mbcrcstorage;AccountKey=XxQnJbmOrKcr0XemXV58svhb+03eLIQCTpkvTBx5m6CuXnmKEjdyHfLuROfnP56bMWx37k1/Vxqr+AStz1m0Vw==;EndpointSuffix=core.windows.net"
+        preoutput=$(terraform output -raw connection_string | grep -Pv '^\[command]' | awk -F '::' '{print $1}')
+        output=$(echo $preoutput | tr -d '\n') 
+        echo "Output: $output"
+        echo "Final: $final"
+        if [[ "$output" == "$final" ]]; then
+          echo "Strings are equal"
+        else
+          echo "Strings are not equal"
+        fi
+        echo "handle=$output" >> "$GITHUB_OUTPUT"
+
+  build-and-deploy-frontend:
+    needs: deploy-IAC
+    runs-on: ubuntu-latest
+    env:
+      CI: false
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./frontend
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: testing
+      run: |
+        echo ${{ needs.deploy-IAC.outputs.connection_string }}
+
+    - name: Setup Node.js for React App
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.1.0'
+
+    - name: Run install
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: install 
+        dir: 'frontend'
+          
+    - name: Build production bundle
+      uses: borales/actions-yarn@v4
+      with:
+        cmd: build
+        dir: 'frontend'
+        
+    - name: Upload to Azure Blob Storage
+      uses: azure/CLI@v1.0.7
+      env:
+        AZURE_STORAGE_CONNECTION_STRING: ${{ needs.deploy-IAC.outputs.connection_string }}
+      with:
+        inlineScript: |
+          echo "Connection string: $AZURE_STORAGE_CONNECTION_STRING"
+          az storage blob upload-batch --account-name mbcrcstorage -s ./frontend/build -d '$web'
