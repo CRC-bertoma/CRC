@@ -56,9 +56,8 @@ const Home = () => {
               <Typewriter
                 options={{
                   strings: [
-                    "I am a full stack web developer💻.",
-                    "I am studying cybersecurity for cloud☁️.",
-                    "I love blockchain⛓.",
+                    "I have a MSc in Cybersecurity for Cloud💻",
+                    "I am a Cloud Engineer ☁️",
                   ],
                   autoStart: true,
                   loop: true,
