@@ -1,3 +1,4 @@
 backend/
 .DS_Store
 IAC/azure-functions/.terraform.lock.hcl
+node_modules/
