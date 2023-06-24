@@ -14,10 +14,6 @@ env:
 jobs:
   build-and-deploy-functions:
     runs-on: ubuntu-latest
-    needs: build-and-deploy-functions
-    defaults:
-      run:
-        working-directory: ./tests/api
     environment: dev
     steps:
     - name: 'Checkout GitHub Action'
@@ -47,6 +43,10 @@ jobs:
         enable-oryx-build: true
   end-to-end-tests:
     runs-on: ubuntu-latest
+    needs: build-and-deploy-functions
+    defaults:
+      run:
+        working-directory: ./tests/api
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
