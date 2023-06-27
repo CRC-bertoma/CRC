@@ -2,3 +2,5 @@ backend/
 .DS_Store
 IAC/azure-functions/.terraform.lock.hcl
 node_modules/
+frontend/.firebaserc
+frontend/firebase.json

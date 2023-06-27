@@ -7,6 +7,7 @@ import Contact from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
 import TopButton from "./components/topButton/TopButton";
 import Navbar from "./components/navbar/Navbar";
+import Banner from "./components/banner/Banner";
 // import Timeline from "./components/timeline/timeline";
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <div className="App">
+     <Banner />
       <Home />
       <About />
       <Experience />
